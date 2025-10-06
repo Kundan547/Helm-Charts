@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: minio
+namespace: openlend-qa
+spec:
+  type: {{ .Values.service.type }}
+  ports:
+    - port: {{ .Values.service.port }}
+      targetPort: 9000
+      name: api
+    - port: {{ .Values.service.consolePort }}
+      targetPort: 9001
+      name: console
+  selector:
+    app: minio
+
